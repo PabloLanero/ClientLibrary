@@ -1,0 +1,45 @@
+version: '1.0'
+
+services:
+  # web: 
+  #   image: nginx:1.29.3
+  #   container_name: Frontend
+  #   volumes:
+  #     - ./frontend:/usr/share/nginx/html
+  #   ports:
+  #     - "80:80"
+  #   environment:
+  #     - NGINX_PORT=80
+
+  api:
+    container_name: Backend
+    build: ./backend
+    ports:
+      - "8941:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      # Ten cuidado con poner \" , puede causar errores 
+      - ConnectionString=server=mysql;Port=9041;uid=root;pwd=MySup3rP4ssw0rd!;database=BiblioDB;
+    volumes:
+      - ./logs:/logs
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "9041:9041"
+    environment:
+      # - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=MySup3rP4ssw0rd!
+      - MYSQL_DATABASE=BiblioDB
+      - MYSQL_TCP_PORT=9041
+    
+    volumes:
+      - bbddScripts:/var/lib/mysql
+      - ./bbddScripts:/docker-entrypoint-initdb.d/
+    
+
+volumes:
+  bbddScripts:
