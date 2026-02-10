@@ -13,16 +13,19 @@
   },
   "dependencies": {
     "@fontsource/roboto": "^5.2.9",
+    "@mdi/js": "^7.4.47",
     "pinia": "^3.0.4",
     "vue": "^3.5.27",
     "vue-router": "^5.0.1",
     "vuetify": "^3.11.8"
   },
   "devDependencies": {
+    "@mdi/font": "^7.4.47",
     "@tsconfig/node24": "^24.0.4",
     "@types/node": "^24.10.9",
     "@vitejs/plugin-vue": "^6.0.3",
     "@vue/tsconfig": "^0.8.1",
+    "material-design-icons-iconfont": "^6.7.0",
     "npm-run-all2": "^8.0.4",
     "prettier": "3.8.1",
     "typescript": "~5.9.3",
