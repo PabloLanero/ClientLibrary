@@ -46,8 +46,8 @@ namespace Biblio.Repositories
                                     Email = reader.GetString(3),
                                     FechaRegistro = reader.GetDateTime(4),
                                     EstaActivo = reader.GetBoolean(5),
-                                    Rol= reader.GetString(6),
-                                    Password = reader.GetString(7)
+                                    Rol= await reader.IsDBNullAsync(6) ? string.Empty :reader.GetString(6),
+                                    Password = await reader.IsDBNullAsync(7) ?string.Empty :reader.GetString(7)
                                 };
                                 usuarios.Add(usuario);
                             }
