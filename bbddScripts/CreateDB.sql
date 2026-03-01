@@ -89,11 +89,11 @@ INSERT INTO Libro (ISBN, Titulo, Genero, NumeroPaginas, Precio, Disponible, Fech
 
 INSERT INTO Usuario (Id, Nombre, Apellido, Email, Passwor, Rol,FechaRegistro, EstaActivo) VALUES
 (1, 'Admin', 'sudo', 'admin@email.com', 'Cambiame2025', 'admin','2023-01-15', 1),
-(2, 'Carlos', 'Martínez', 'carlos.martinez@email.com', 'Pass123', 'user','2023-02-10', 1),
-(3, 'María', 'López', 'maria.lopez@email.com', 'Pass123', 'user','2023-02-15', 1),
-(4, 'Juan', 'Pérez', 'juan.perez@email.com', 'Pass123', 'user','2023-03-01', 1),
-(5, 'Ana', 'García', 'ana.garcia@email.com', 'Pass123', 'user','2023-03-05', 1),
-(6, 'Luis', 'Rodríguez', 'luis.rodriguez@email.com', 'Pass123', 'user','2023-03-10', 1);
+(2, 'Carlos', 'Martínez', 'carlos.martinez@email.com', 'Pass12345', 'user','2023-02-10', 1),
+(3, 'María', 'López', 'maria.lopez@email.com', 'Pass12345', 'user','2023-02-15', 1),
+(4, 'Juan', 'Pérez', 'juan.perez@email.com', 'Pass12345', 'user','2023-03-01', 1),
+(5, 'Ana', 'García', 'ana.garcia@email.com', 'Pass12345', 'user','2023-03-05', 1),
+(6, 'Luis', 'Rodríguez', 'luis.rodriguez@email.com', 'Pass12345', 'user','2023-03-10', 1);
 
 
 INSERT INTO Prestamo (Id, LibroISBN, UsuarioId, FechaPrestamo, FechaDevolucionPrevista, FechaDevolucionReal, EstadoPrestamo, Multa) VALUES

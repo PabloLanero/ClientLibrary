@@ -1,13 +1,72 @@
 import { createI18n } from "vue-i18n";
-// Copiado y pegado del tfg, cambiar contenido
+import {useConfigurationStore } from '@/stores/Central'
+// const { idioma } = useConfigurationStore()
+
 export const i18n = createI18n({
+    legacy: false,
+    globalInjection: true,
   locale: 'es',
   fallbackLocale: 'en',
   messages: {
     en: {
-        message: {
-            hello: 'hello world'
+        placeholder: 'Something goes here',
+        header:{
+            btnLibros: 'View Books',
+            btnSignin: 'Sign Up',
+            btnLogin: 'Log In',
+            btnProfile: 'View Profile',
         },
+        footer: {
+            language: 'Translate',
+        },
+        landing: {
+            bienvenida: {
+                titulo: 'Welcome to ClientLibrary',
+                subtitulo: 'Discover your next great read',
+                button: 'Explore Books'
+            },
+            cards: {
+                primera: {
+                    titulo: 'Wide Catalog',
+                    texto: 'Thousands of books available'
+                },
+                segunda: {
+                    titulo: 'Reviews',
+                    texto: 'Reader opinions'
+                },
+                tercera: {
+                    titulo: 'Favorites',
+                    texto: 'Save your favorites'
+                },
+            }
+        },
+        sigin: {
+            sigin: 'Sign Up',
+            email: 'Email',
+            password: 'Password',
+            btnSigin: 'Sign Up',
+        },
+        login:{
+            login: 'Log In',
+            btnLogin: 'Log In',
+        },
+        forms:{
+            isEmpty: 'This field is required',
+            notValid: 'This field is not valid',
+            notEmail: 'This field must be a valid email',
+            invalidPassword: 'Password must contain at least 8 characters',
+            userRegistered: 'This email already has an associated user',
+            notExist: 'This user does not exist'
+        },
+        book:{
+            isbn: 'ISBN',
+            title: 'Title',
+            gender: 'Genre',
+            pages: 'Number of pages',
+            price: 'Price',
+            avaliable: 'Available',
+            btnUpload: 'Create Book'
+        }
     },
     es: {
         placeholder: 'Aqui va algo',
@@ -16,6 +75,9 @@ export const i18n = createI18n({
             btnSignin: 'Registrarse',
             btnLogin: 'Iniciar sesion',
             btnProfile: 'Ver Perfil',
+        },
+        footer: {
+            language: 'Traducir',
         },
         landing: {
             bienvenida: {

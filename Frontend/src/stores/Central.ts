@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { i18n } from '@/i18n/i18n'
+import { i18n} from '@/i18n/i18n'
 
 import type { Libro } from '@/models/Libros'
 import type { Auth } from '@/models/Auth'
@@ -8,7 +8,7 @@ import type { Usuario } from '@/models/Usuario'
 import type { Register } from '@/models/DTOs/Register'
 import type { Login } from '@/models/DTOs/Login'
 
-const idioma = ref<string>('es')
+
 
 export const useBookStore = defineStore('bookStore', () => {
   // No me deja modificarlo en las vistas
@@ -48,8 +48,7 @@ export const useBookStore = defineStore('bookStore', () => {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer '+user.value.token
     }
-    console.log(JSON.stringify(libro))
-    debugger
+    
     let added = await fetch('http://localhost:8941/api/Libro',{
       method: 'POST',
       headers: header,
@@ -194,4 +193,19 @@ export const useValidation = defineStore('formValidations', () => {
   return { validateEmail, validateString, validatePassword, validateNumber }
 })
 
+export const useConfigurationStore = defineStore('configurationStore', () => {
+  const idioma = ref<string>('es')
+  
+  function changeLanguaje(){
+    idioma.value = idioma.value === 'es' ? 'en' : 'es'
+    // Da error, pero funciona, puede que sea VSC
+    i18n.global.locale.value = idioma.value
+  }
 
+  
+
+
+
+  return { idioma , changeLanguaje}
+  
+})

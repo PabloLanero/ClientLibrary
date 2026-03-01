@@ -10,9 +10,9 @@ const emits = defineEmits(['addBook'])
 const  { validateString, validateNumber } = useValidation()
 
 function submit(values: any){
-    nuevoLibro.value.isbn = values.isbn
-    nuevoLibro.value.titulo = values.titulo
-    nuevoLibro.value.genero = values.genero
+    nuevoLibro.value.isbn = values.isbn.trim()
+    nuevoLibro.value.titulo = values.titulo.trim()
+    nuevoLibro.value.genero = values.genero.trim()
     nuevoLibro.value.numeroPaginas = values.numeroPaginas
     nuevoLibro.value.precio = values.precio
     emits('addBook',nuevoLibro.value)
