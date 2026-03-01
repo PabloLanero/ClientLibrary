@@ -10,6 +10,7 @@ export const i18n = createI18n({
   messages: {
     en: {
         placeholder: 'Something goes here',
+        deleted: 'Deleted',
         header:{
             btnLibros: 'View Books',
             btnSignin: 'Sign Up',
@@ -70,6 +71,7 @@ export const i18n = createI18n({
     },
     es: {
         placeholder: 'Aqui va algo',
+        deleted: 'Eliminado',
         header:{
             btnLibros: 'Ver Libros',
             btnSignin: 'Registrarse',

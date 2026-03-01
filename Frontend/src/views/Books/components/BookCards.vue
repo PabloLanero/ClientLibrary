@@ -24,7 +24,7 @@ const props = defineProps<{
                 </v-chip>
             </div>
         </v-card-text>
-        <v-slot/>
+        <slot/>
     </v-card>
 </template>
 

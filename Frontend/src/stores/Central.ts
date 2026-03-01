@@ -1,6 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { i18n} from '@/i18n/i18n'
+import { useRouter } from 'vue-router'
 
 import type { Libro } from '@/models/Libros'
 import type { Auth } from '@/models/Auth'
@@ -13,7 +14,7 @@ import type { Login } from '@/models/DTOs/Login'
 export const useBookStore = defineStore('bookStore', () => {
   // No me deja modificarlo en las vistas
   const libros = ref<Libro[]>([])
-  
+  const router = useRouter()
   function getLibros() {
     fetch('http://localhost:8941/api/Libro')
     .then(res => res.json())
@@ -46,7 +47,7 @@ export const useBookStore = defineStore('bookStore', () => {
     const header = {
       'accept': 'text/plain',
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer '+user.value.token
+      'Authorization': 'Bearer '+token.value
     }
     
     let added = await fetch('http://localhost:8941/api/Libro',{
@@ -58,6 +59,7 @@ export const useBookStore = defineStore('bookStore', () => {
 
     if(added){
       libros.value.push(libro)
+      router.push('/Books')
     }
   }
 
@@ -67,18 +69,18 @@ export const useBookStore = defineStore('bookStore', () => {
 /**
  * Para gestionar el usuario
  */
-const user = ref<Auth>({
-  token: ''
-})
+
+const token = ref<string>('')
 export const useUserStore = defineStore('userStore', () => {
+  const user = ref<Auth>({
+    token: ''
+  })
   const header = {
-      'Content-Type': 'application/json',
+    'Content-Type': 'application/json',
   }
 
   async function register(usuario: Register): Promise<boolean>{
-    user.value = {
-      token: ''
-    }
+    
     
     let bRet = fetch('http://localhost:8941/Auth/Register', {
         method: 'POST',
@@ -92,6 +94,7 @@ export const useUserStore = defineStore('userStore', () => {
     }).then((res: Auth) => {
       
         user.value = res
+        token.value = res.token
       return true
     })
     .catch(err  => {
@@ -100,9 +103,7 @@ export const useUserStore = defineStore('userStore', () => {
     return bRet
 }
   async function login(usuario: Login): Promise<any>{
-    user.value = {
-      token: ''
-    }
+    
     
     let bRet = fetch('http://localhost:8941/Auth/Login', {
         method: 'POST',
@@ -116,6 +117,7 @@ export const useUserStore = defineStore('userStore', () => {
     }).then((res: Auth) => {
       
         user.value = res
+        token.value = res.token
       return user.value
     })
     .catch(err  => {

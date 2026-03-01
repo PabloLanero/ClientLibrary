@@ -16,7 +16,9 @@ function irLibros(){
 }
 
 function irUser() {
-    router.push('/User')
+    debugger
+    if(user.usuario?.rol === 'admin') router.push('/Admin' )
+    else router.push('/User')
 }
 </script>
 <template>

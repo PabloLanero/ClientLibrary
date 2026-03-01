@@ -4,14 +4,14 @@ import { useBookStore, useUserStore } from '@/stores/Central'
 import BookCards from './components/BookCards.vue';
 
 import type { Libro } from '@/models/Libros'
+import { ref } from 'vue';
 const { libros, deleteLibro } = useBookStore()
-const { user }= useUserStore()
+
+const showDialog = ref(false)
 
 async function borrarLibro(libro: Libro){
     let bool = await deleteLibro(libro)
-    if(bool){
-        alert('El libro se ha borrado')
-    }
+    showDialog.value = bool
 
 }
 
@@ -20,12 +20,26 @@ async function borrarLibro(libro: Libro){
     <v-row cols="12">
         <v-col md="4" v-for="libro in libros">
             <BookCards :libro="libro">
-                <v-card-actions v-if="user.usuario?.rol === 'admin'">
-                    <v-btn  text="Borrar Libro" append-icon="mdi-delete" color="red" @click="borrarLibro(libro)">
+                <v-card-actions v-if="useUserStore().user.usuario?.rol === 'admin'">
+                    <v-btn text="Borrar Libro" append-icon="mdi-delete" color="red" @click="borrarLibro(libro)">
 
                     </v-btn>
                 </v-card-actions>
             </BookCards>
+            <v-dialog :model-value="showDialog" width="300px">
+                <v-card>
+                    <v-card-title>
+
+                        <p>{{ $t('deleted') }}</p>
+                    </v-card-title>
+                    <v-card-actions>
+
+                        <v-btn prepend-icon="mdi-check-bold" @click="showDialog = !showDialog">
+        
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
         </v-col>
     </v-row>
 </template>
