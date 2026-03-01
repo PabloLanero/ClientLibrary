@@ -1,15 +1,12 @@
 version: '1.0'
 
 services:
-  # web: 
-  #   image: nginx:1.29.3
-  #   container_name: Frontend
-  #   volumes:
-  #     - ./frontend:/usr/share/nginx/html
-  #   ports:
-  #     - "80:80"
-  #   environment:
-  #     - NGINX_PORT=80
+  web: 
+    build: ./Frontend
+    container_name: Frontend
+    ports:
+      - "5173:80"
+    
 
   api:
     container_name: Backend

@@ -200,8 +200,7 @@ export const useConfigurationStore = defineStore('configurationStore', () => {
   
   function changeLanguaje(){
     idioma.value = idioma.value === 'es' ? 'en' : 'es'
-    // Da error, pero funciona, puede que sea VSC
-    i18n.global.locale.value = idioma.value
+    i18n.global.locale.value = idioma.value as 'es' | 'en'
   }
 
   
