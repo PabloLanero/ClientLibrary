@@ -11,6 +11,7 @@ import type { Login } from '@/models/DTOs/Login'
 const idioma = ref<string>('es')
 
 export const useBookStore = defineStore('bookStore', () => {
+  // No me deja modificarlo en las vistas
   const libros = ref<Libro[]>([])
   
   function getLibros() {
@@ -25,16 +26,52 @@ export const useBookStore = defineStore('bookStore', () => {
     }))
   }
 
-  return { libros, getLibros }
+  async function deleteLibro(libro: Libro){
+    const header = {
+        'accept': 'text/plain',
+        'ISBN': libro.isbn
+    }
+    let borrado = await fetch('http://localhost:8941/api/Libro',{
+        method: 'DELETE',
+        headers: header,
+    }).then((res => res.ok))
+
+    if(borrado){
+        libros.value = libros.value.filter(element => element.isbn !== libro.isbn)
+    }
+
+    return borrado
+}
+  async function addLibro(libro: Libro){
+    const header = {
+      'accept': 'text/plain',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+user.value.token
+    }
+    console.log(JSON.stringify(libro))
+    debugger
+    let added = await fetch('http://localhost:8941/api/Libro',{
+      method: 'POST',
+      headers: header,
+      credentials: 'include',
+      body: JSON.stringify(libro)
+    }).then((res)=> res.ok)
+
+    if(added){
+      libros.value.push(libro)
+    }
+  }
+
+  return { libros, getLibros , deleteLibro, addLibro}
 })
 
 /**
  * Para gestionar el usuario
  */
+const user = ref<Auth>({
+  token: ''
+})
 export const useUserStore = defineStore('userStore', () => {
-  const user = ref<Auth>({
-    token: ''
-  })
   const header = {
       'Content-Type': 'application/json',
   }
@@ -63,7 +100,7 @@ export const useUserStore = defineStore('userStore', () => {
     }) 
     return bRet
 }
-  async function login(usuario: Login): Promise<boolean>{
+  async function login(usuario: Login): Promise<any>{
     user.value = {
       token: ''
     }
@@ -80,7 +117,7 @@ export const useUserStore = defineStore('userStore', () => {
     }).then((res: Auth) => {
       
         user.value = res
-      return true
+      return user.value
     })
     .catch(err  => {
       return false
@@ -133,6 +170,12 @@ export const useValidation = defineStore('formValidations', () => {
     
   }
 
+  function validateNumber(value: any){
+    if(!value) return i18n.global.t('forms.isEmpty')
+    if(value <=0) return i18n.global.t('forms.notValid')
+      return true
+  }
+
   /**
    * Validacion para contraseñas
    */
@@ -148,7 +191,7 @@ export const useValidation = defineStore('formValidations', () => {
     return true
   }
 
-  return { validateEmail, validateString, validatePassword }
+  return { validateEmail, validateString, validatePassword, validateNumber }
 })
 
 

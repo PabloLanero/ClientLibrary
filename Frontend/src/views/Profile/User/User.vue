@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/Central';
-import UserCard from './components/UserCard.vue';
-
+import UserCard from '../../../components/UserCard.vue';
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router'
 const { user } = useUserStore();
-
-
+const router = useRouter()
+onMounted( () => {
+    if(user.token === ''){
+        router.go(-1)
+    }
+})
 </script>
 <template>
     <div>

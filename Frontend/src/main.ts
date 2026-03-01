@@ -13,7 +13,6 @@ import router from './router'
 // i18n
 import { i18n } from '@/i18n/i18n'
 
-// import { } from 'vee-validate'
 
 const app = createApp(App)
 const vuetify = createVuetify({

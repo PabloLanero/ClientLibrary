@@ -5,5 +5,5 @@ export interface Libro{
     numeroPaginas: number,
     precio: number,
     disponible: boolean,
-    fechaPublicacion: Date
+    fechaPublicacion?: string
 }
