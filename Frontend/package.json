@@ -14,8 +14,11 @@
   "dependencies": {
     "@fontsource/roboto": "^5.2.9",
     "@mdi/js": "^7.4.47",
+    "i18n": "^0.15.3",
     "pinia": "^3.0.4",
+    "vee-validate": "^4.15.1",
     "vue": "^3.5.27",
+    "vue-i18n": "^11.2.8",
     "vue-router": "^5.0.1",
     "vuetify": "^3.11.8"
   },

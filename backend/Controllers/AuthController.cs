@@ -24,7 +24,7 @@ namespace Biblio.Controllers
             {
                 if (!ModelState.IsValid)  {return BadRequest(ModelState); } 
 
-                string token = await _authService.Login(loginDtoIn);
+                var token = await _authService.Login(loginDtoIn);
                 return Ok(token);
             }
             catch (KeyNotFoundException ex)

@@ -30,13 +30,13 @@ function irLibros(){
             <v-col md="6">
                 <v-row cols="12" align="center">
                     <v-col md="4">
-                         <v-btn text="Ver Libros" append-icon="mdi-book" @click="irLibros" color="red" />
+                         <v-btn :text="$t('header.btnLibros')" append-icon="mdi-book" @click="irLibros" color="red" />
                     </v-col>
                     <v-col md="4">
-                        <v-btn text="Log in" append-icon="mdi-account-circle" @click="irLogin" color="red" />
+                        <v-btn :text="$t('header.btnLogin')" append-icon="mdi-account-circle" @click="irLogin" color="red" />
                     </v-col>
                     <v-col md="4">
-                        <v-btn text="Sign in" append-icon="mdi-key" @click="irSigIn" color="red" />
+                        <v-btn :text="$t('header.btnSignin')" append-icon="mdi-key" @click="irSigIn" color="red" />
                     </v-col>
                 </v-row>
             </v-col>

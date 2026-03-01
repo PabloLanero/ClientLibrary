@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       redirect: '/Landing',
-      component: import('@/views/Main.vue'),
+      component: import('@/views/main.vue'),
       children: [{
         path: '/Landing',
         component: import('@/views/Landing/Landing.vue')
@@ -20,6 +20,9 @@ const router = createRouter({
       },{
         path: '/Books',
         component: import('@/views/Books/Book.vue')
+      },{
+        path: '/User',
+        component: import('@/views/Profile/User/User.vue')
       }]
     }
   ],

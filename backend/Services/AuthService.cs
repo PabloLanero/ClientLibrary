@@ -22,20 +22,19 @@ namespace Biblio.Services
             _repository = repository;
         }
 
-        public async Task<string> Login(LoginDtoIn loginDtoIn) {
+        public async Task<SigIn> Login(LoginDtoIn loginDtoIn) {
             Usuario user = await _repository.GetUserFromCredentials(loginDtoIn);
             return GenerateToken(user);
         }
 
-        public async Task<string> Register(UserDtoIn userDtoIn) {
+        public async Task<SigIn> Register(UserDtoIn userDtoIn) {
             var user = await _repository.AddUserFromCredentials(userDtoIn);
             return GenerateToken(user);
         }
 
-        public string GenerateToken(Usuario userDtoOut) {
-            System.Console.WriteLine("AAA3º");
+        public SigIn GenerateToken(Usuario userDtoOut) {
             var key = Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"]); 
-            System.Console.WriteLine("AAAAAAA6");
+            
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Issuer = _configuration["JWT:ValidIssuer"],
@@ -50,12 +49,17 @@ namespace Biblio.Services
                 Expires = DateTime.UtcNow.AddDays(7), // AddMinutes(60)
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
-            System.Console.WriteLine("AAAAAAAAA9");
+            
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
-            return tokenString;
+            SigIn sigIn = new SigIn
+            {
+                token= tokenString,
+                usuario = userDtoOut
+            };
+            return sigIn;
         } 
         public bool HasAccessToResource(int requestedUserID, ClaimsPrincipal user) 
         {

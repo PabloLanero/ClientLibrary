@@ -35,7 +35,7 @@ CREATE TABLE Usuario (
     Id INT PRIMARY KEY NOT NULL ,
     Nombre VARCHAR(100),
     Apellido VARCHAR(100),
-    Email VARCHAR(100),
+    Email VARCHAR(100) UNIQUE,
     Passwor VARCHAR(100),
     Rol VARCHAR(64),
     FechaRegistro DATE,
@@ -78,9 +78,9 @@ INSERT INTO Libro (ISBN, Titulo, Genero, NumeroPaginas, Precio, Disponible, Fech
 ('978-84-01-45001-2', 'La casa de los espíritus', 'Novela', 499, 18.50, 1, '1982-01-01');
 
 
-INSERT INTO Usuario (Id, Nombre, Apellido, Email, FechaRegistro, EstaActivo) VALUES
-(1, 'Juan', 'Pérez', 'juan.perez@email.com', '2023-01-15', 1),
-(2, 'María', 'Gómez', 'maria.gomez@email.com', '2023-02-20', 1);
+INSERT INTO Usuario (Id, Nombre, Apellido, Email, Passwor, Rol,FechaRegistro, EstaActivo) VALUES
+(1, 'Juan', 'Pérez', 'juan.perez@email.com', '123123', 'Admin','2023-01-15', 1),
+(2, 'María', 'Gómez', 'maria.gomez@email.com','123123', 'Admin', '2023-02-20', 1);
 
 
 INSERT INTO Prestamo (Id, LibroISBN, UsuarioId, FechaPrestamo, FechaDevolucionPrevista, FechaDevolucionReal, EstadoPrestamo, Multa) VALUES
