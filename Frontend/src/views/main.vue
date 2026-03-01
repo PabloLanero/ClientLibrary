@@ -10,9 +10,9 @@ const router = useRoute()
 <template>
 <div class="app-container">
   <!-- Por si se esta logeando o no -->
-  <Header v-if="!router.path.includes('SigIn') && !router.path.includes('LogIn') " />
+  <Header v-if="!router.path.includes('SigIn') && !router.path.includes('LogIn') "/>
   <RouterView />
-  <Footer />
+  <Footer v-if="!router.path.includes('SigIn') && !router.path.includes('LogIn') "/>
 </div>
 </template>
 

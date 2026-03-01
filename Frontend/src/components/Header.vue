@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router';
+import { useUserStore } from '@/stores/Central'
 
+// Variables
 const router = useRouter()
-
+const { user } = useUserStore()
 function irLogin(){
     router.push('/LogIn')
 }
@@ -11,6 +13,10 @@ function irSigIn(){
 }
 function irLibros(){
     router.push('/Books')
+}
+
+function irUser() {
+    router.push('/User')
 }
 </script>
 <template>
@@ -28,15 +34,18 @@ function irLibros(){
 
             </v-col>
             <v-col md="6">
-                <v-row cols="12" align="center">
+                <v-row cols="12" align="end">
                     <v-col md="4">
                          <v-btn :text="$t('header.btnLibros')" append-icon="mdi-book" @click="irLibros" color="red" />
                     </v-col>
-                    <v-col md="4">
+                    <v-col v-if="(user.token === '')" md="4">
                         <v-btn :text="$t('header.btnLogin')" append-icon="mdi-account-circle" @click="irLogin" color="red" />
                     </v-col>
-                    <v-col md="4">
+                    <v-col v-if="(user.token === '')" md="4">
                         <v-btn :text="$t('header.btnSignin')" append-icon="mdi-key" @click="irSigIn" color="red" />
+                    </v-col>
+                    <v-col v-if="user.token !== ''" md="4">
+                        <v-btn :text="$t('header.btnProfile')" append-icon="mdi-account-circle" @click="irUser" color="red" />
                     </v-col>
                 </v-row>
             </v-col>

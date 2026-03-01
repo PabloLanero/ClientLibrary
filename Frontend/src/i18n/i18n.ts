@@ -14,7 +14,8 @@ export const i18n = createI18n({
         header:{
             btnLibros: 'Ver Libros',
             btnSignin: 'Registrarse',
-            btnLogin: 'Iniciar sesion'
+            btnLogin: 'Iniciar sesion',
+            btnProfile: 'Ver Perfil',
         },
         landing: {
             bienvenida: {
@@ -41,14 +42,18 @@ export const i18n = createI18n({
             sigin: 'Registrarse',
             email: 'Correo',
             password: 'Contraseña',
-            btnSigin: 'Inciar sesion',
-            
+            btnSigin: 'Registrarse',
+        },
+        login:{
+            login: 'Logearse',
+            btnLogin: 'Logearse',
         },
         forms:{
             isEmpty: 'Este campo es obligatorio',
             notEmail: 'Este campo tiene que ser un email valido',
             invalidPassword: 'La contraseña debe contener al menos 8 caracteres',
-            userRegistered: 'Este correo ya tiene un usuario asociado'
+            userRegistered: 'Este correo ya tiene un usuario asociado',
+            notExist: 'Este usuario no existe'
         }
     }
   }

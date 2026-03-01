@@ -6,6 +6,7 @@ import type { Libro } from '@/models/Libros'
 import type { Auth } from '@/models/Auth'
 import type { Usuario } from '@/models/Usuario'
 import type { Register } from '@/models/DTOs/Register'
+import type { Login } from '@/models/DTOs/Login'
 
 const idioma = ref<string>('es')
 
@@ -34,13 +35,13 @@ export const useUserStore = defineStore('userStore', () => {
   const user = ref<Auth>({
     token: ''
   })
+  const header = {
+      'Content-Type': 'application/json',
+  }
 
   async function register(usuario: Register): Promise<boolean>{
     user.value = {
       token: ''
-    }
-    const header = {
-        'Content-Type': 'application/json',
     }
     
     let bRet = fetch('http://localhost:8941/Auth/Register', {
@@ -62,8 +63,33 @@ export const useUserStore = defineStore('userStore', () => {
     }) 
     return bRet
 }
+  async function login(usuario: Login): Promise<boolean>{
+    user.value = {
+      token: ''
+    }
+    
+    let bRet = fetch('http://localhost:8941/Auth/Login', {
+        method: 'POST',
+        headers: header,
+        body: JSON.stringify(usuario),
+    }).then(res => {
+      // debugger
+      if(res.status === 401) throw new Error('Este usuario no existe')
 
-  return {user, register}
+      return res.json()
+    }).then((res: Auth) => {
+      
+        user.value = res
+      return true
+    })
+    .catch(err  => {
+      return false
+    }) 
+    return bRet
+}
+
+
+  return {user, register, login}
 })
 
 
