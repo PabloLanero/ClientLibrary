@@ -50,10 +50,20 @@ export const i18n = createI18n({
         },
         forms:{
             isEmpty: 'Este campo es obligatorio',
+            notValid: 'Este campo no es valido',
             notEmail: 'Este campo tiene que ser un email valido',
             invalidPassword: 'La contraseña debe contener al menos 8 caracteres',
             userRegistered: 'Este correo ya tiene un usuario asociado',
             notExist: 'Este usuario no existe'
+        },
+        book:{
+            isbn: 'ISBN',
+            title: 'Titulo',
+            gender: 'Genero',
+            pages: 'Numero de paginas',
+            price: 'Precio',
+            avaliable: 'Diponible',
+            btnUpload: 'Crear Libro'
         }
     }
   }

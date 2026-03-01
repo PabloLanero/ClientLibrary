@@ -8,7 +8,7 @@ namespace Biblio.models
         public int? NumeroPaginas {get;set;}
         public double? Precio {get;set;}
         public bool? Disponible {get;set;}
-        public DateTime? FechaPublicacion {get;set;}
+        public DateTime? FechaPublicacion {get;set;} = new DateTime();
         public Libro(){}
     }
 }

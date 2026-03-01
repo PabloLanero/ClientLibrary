@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 using Serilog;
 using Mysqlx.Crud;
+using Microsoft.AspNetCore.Authorization;
 namespace Biblio.Controllers
 {
     [ApiController]
@@ -32,6 +33,7 @@ namespace Biblio.Controllers
             return Ok(lstLibros);
         }
         [HttpPost]
+        [Authorize(Roles="admin")]
         public async Task<ActionResult<bool>> PostLibroAsync([FromBody]Libro libro)
         {
             bool bRet = await _libroService.PostLibroAsync(libro);

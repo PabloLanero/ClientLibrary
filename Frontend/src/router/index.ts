@@ -7,22 +7,25 @@ const router = createRouter({
     {
       path: '/',
       redirect: '/Landing',
-      component: import('@/views/main.vue'),
+      component: () => import('@/views/main.vue'),
       children: [{
         path: '/Landing',
-        component: import('@/views/Landing/Landing.vue')
+        component: () => import('@/views/Landing/Landing.vue')
       },{
         path: '/Login',
-        component: import('@/views/Login/LogIn.vue')
+        component: () => import('@/views/Login/LogIn.vue')
       },{
         path: '/SigIn',
-        component: import('@/views/Login/SignIn.vue')
+        component: () => import('@/views/Login/SignIn.vue')
       },{
         path: '/Books',
-        component: import('@/views/Books/Book.vue')
+        component: () => import('@/views/Books/Book.vue')
       },{
         path: '/User',
-        component: import('@/views/Profile/User/User.vue')
+        component: () => import('@/views/Profile/User/User.vue')
+      },{
+        path: '/Admin',
+        component: () => import('@/views/Profile/Admin/Admin.vue')
       }]
     }
   ],

@@ -25,7 +25,16 @@ async function submit (values: any){
     usuario.value.password = values.password
 
     let dejo = await login(usuario.value)
-    if (dejo) router.push('/User')
+
+    
+    if (dejo) {
+        if(dejo['usuario']['rol'] === 'admin'){
+            router.push('/Admin')    
+        }
+        else if (dejo['usuario']['rol'] === 'user'){
+            router.push('/User')
+        }
+    }
     seLogueo.value = !dejo
   }
 

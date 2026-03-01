@@ -16,7 +16,7 @@ const props = defineProps<{
             <p class="book-genre"><v-icon size="16">mdi-tag</v-icon> {{ libro.genero }}</p>
             <p class="book-isbn"><v-icon size="16">mdi-barcode</v-icon> {{ libro.isbn }}</p>
             <p class="book-pages"><v-icon size="16">mdi-file-document</v-icon> {{ libro.numeroPaginas }} páginas</p>
-            <p class="book-date"><v-icon size="16">mdi-calendar</v-icon> {{ new Date(libro.fechaPublicacion).toLocaleDateString() }}</p>
+            <p class="book-date"><v-icon size="16">mdi-calendar</v-icon> {{ libro.fechaPublicacion? new Date(libro.fechaPublicacion).toLocaleDateString(): undefined }}</p>
             <div class="book-footer">
                 <span class="book-price">${{ libro.precio.toFixed(2) }}</span>
                 <v-chip :color="libro.disponible ? 'success' : 'error'" size="small">
@@ -24,6 +24,7 @@ const props = defineProps<{
                 </v-chip>
             </div>
         </v-card-text>
+        <v-slot/>
     </v-card>
 </template>
 
