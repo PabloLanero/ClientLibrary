@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-
+import { useUserStore } from '@/stores/Central';
 import type { Usuario } from '@/models/Usuario';
 import UserData from './components/UserData.vue';
-
-
+import { useRouter } from 'vue-router'
+const { user } = useUserStore()
+const showUpdate = ref<boolean>(false)
 const users = ref<Usuario[]>()
 const usuarioSeleccionado = ref<Usuario>({
     id: 0,
@@ -15,7 +16,8 @@ const usuarioSeleccionado = ref<Usuario>({
     rol: '',
     estaActivo: true
 })
-const showUpdate = ref<boolean>(false)
+
+const router = useRouter()
 
 
 function getUsuarios() {
@@ -61,6 +63,7 @@ function selectUser(usuario: Usuario){
 }
 
 onMounted( () => {
+    if (user.usuario?.rol !== 'admin') router.push('/')
     getUsuarios()
 })
 
