@@ -63,7 +63,26 @@ export const useBookStore = defineStore('bookStore', () => {
     }
   }
 
-  return { libros, getLibros , deleteLibro, addLibro}
+  async function updateLibro(libro: Libro){
+    const header = {
+      'accept': 'text/plain',
+      'Content-Type': 'application/json',
+    }
+    
+    let added = await fetch('http://localhost:8941/api/Libro',{
+      method: 'PUT',
+      headers: header,
+      body: JSON.stringify(libro)
+    }).then((res)=> res.ok)
+
+    if(added){
+      let libroAct = libros.value.find(element => element ==libro)
+      libroAct = libro
+      
+    }
+  }
+
+  return { libros, getLibros , deleteLibro, addLibro, updateLibro}
 })
 
 /**

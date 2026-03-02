@@ -77,6 +77,7 @@ export const i18n = createI18n({
             btnSignin: 'Registrarse',
             btnLogin: 'Iniciar sesion',
             btnProfile: 'Ver Perfil',
+            btnAdmin: 'Ver Usuarios',
         },
         footer: {
             language: 'Traducir',

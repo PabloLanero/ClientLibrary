@@ -5,6 +5,6 @@ export interface Usuario {
     password: string,
     email: string,
     rol: string,
-    fechaRegistro: Date,
+    fechaRegistro?: Date,
     estaActivo: true
   }

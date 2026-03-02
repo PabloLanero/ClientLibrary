@@ -16,9 +16,11 @@ function irLibros(){
 }
 
 function irUser() {
-    debugger
     if(user.usuario?.rol === 'admin') router.push('/Admin' )
     else router.push('/User')
+}
+function administrarUsuarios() {
+    router.push('/Admin/Users')
 }
 </script>
 <template>
@@ -33,7 +35,7 @@ function irUser() {
                 </v-btn> 
             </v-col>
             <v-col md="3">
-
+                <span>Estas en {{ router.currentRoute.value.name }}</span>
             </v-col>
             <v-col md="6">
                 <v-row cols="12" align="end">
@@ -48,6 +50,9 @@ function irUser() {
                     </v-col>
                     <v-col v-if="user.token !== ''" md="4">
                         <v-btn :text="$t('header.btnProfile')" append-icon="mdi-account-circle" @click="irUser" color="red" />
+                    </v-col>
+                    <v-col v-if="user.usuario?.rol === 'admin'" md="4">
+                        <v-btn :text="$t('header.btnAdmin')" append-icon="mdi-account-circle" @click="administrarUsuarios" color="red" />
                     </v-col>
                 </v-row>
             </v-col>
