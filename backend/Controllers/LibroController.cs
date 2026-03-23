@@ -27,9 +27,17 @@ namespace Biblio.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Libro>>> GetAllLibros([FromHeader(Name = "ISBN")] string ISBN = "", 
                                                                 [FromHeader(Name = "Title")] string Title = "",
+                                                                [FromHeader(Name = "Genero")] string Genero = "",
+                                                                [FromHeader(Name = "minPaginas")] int minPaginas = 0,
+                                                                [FromHeader(Name = "maxPaginas")] int maxPaginas = 0,
+                                                                [FromHeader(Name = "minPrecio")] double minPrecio = 0,
+                                                                [FromHeader(Name = "maxPrecio")] double maxPrecio = 0,
+                                                                [FromHeader(Name = "minFecha")] DateTime minFecha = new DateTime(),
+                                                                [FromHeader(Name = "maxFecha")] DateTime maxFecha = new DateTime(),
+                                                                [FromHeader(Name = "Cantidad")] int Cantidad = 20,
                                                                 [FromHeader(Name = "OrderAsc")] bool OrderAsc = true)
         {
-            List<Libro> lstLibros = await _libroService.GetLibrosAsync(ISBN,Title, OrderAsc);
+            List<Libro> lstLibros = await _libroService.GetLibrosAsync(ISBN, Title, Genero, minPaginas, maxPaginas, minPrecio, maxPrecio, minFecha, maxFecha, Cantidad, OrderAsc);
             return Ok(lstLibros);
         }
         [HttpPost]
