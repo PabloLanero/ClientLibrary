@@ -4,6 +4,8 @@ import { useBookStore, useUserStore } from '@/stores/Central'
 import BookCards from './components/BookCards.vue';
 import UpdateBook from './components/UpdateBook.vue';
 import { ref } from 'vue';
+import { useDebounceFn} from '@vueuse/core'
+
 
 import type { Libro } from '@/models/Libros'
 import type { LibroFiltro } from '@/models/DTOs/BookFilter';
@@ -17,14 +19,14 @@ const libroFiltrado = ref<LibroFiltro>({
     ISBN: '',
     Genero: '',
     Title: '',
-    minPaginas: 0,
-    maxPaginas: 0,
-    minPrecio: 0,
-    maxPrecio: 0,
     minFecha: '',
     maxFecha: '',
     OrderAsc: false
 })
+
+const debounceFn = useDebounceFn(() => {
+    librosReactivos.value = getLibrosFiltered(libroFiltrado.value)
+},1000)
 
 async function borrarLibro(libro: Libro){
     let bool = await deleteLibro(libro)
@@ -45,33 +47,33 @@ async function aumentar(){
 
 </script>
 <template>
-    <v-row cols="12" align="center">
+    <v-row cols="16" align="center">
         <v-col md="2">
-            <v-text-field placeholder="ISBN" v-model="libroFiltrado.ISBN" @input="getLibrosFiltrados" />
+            <v-text-field placeholder="ISBN" v-model="libroFiltrado.ISBN" @input="debounceFn" />
         </v-col>
         <v-col md="2">
-            <v-text-field placeholder="Nombre" v-model="libroFiltrado.Title" @input="getLibrosFiltrados" />
+            <v-text-field placeholder="Nombre" v-model="libroFiltrado.Title" @input="debounceFn" />
+        </v-col>
+        <v-col md="1">
+            <v-text-field placeholder="Genero" v-model="libroFiltrado.Genero" @input="debounceFn" />
+        </v-col>
+        <v-col md="1">
+            <v-text-field type="number" placeholder="Min Páginas" v-model.number="libroFiltrado.minPaginas" @input="debounceFn" />
+        </v-col>
+        <v-col md="1">
+            <v-text-field type="number" placeholder="Max Páginas" v-model.number="libroFiltrado.maxPaginas" @input="debounceFn" />
+        </v-col>
+        <v-col md="1">
+            <v-text-field type="number" placeholder="Min Precio" v-model.number="libroFiltrado.minPrecio" @input="debounceFn" />
+        </v-col>
+        <v-col md="1">
+            <v-text-field type="number" placeholder="Max Precio" v-model.number="libroFiltrado.maxPrecio" @input="debounceFn" />
         </v-col>
         <v-col md="2">
-            <v-text-field placeholder="Genero" v-model="libroFiltrado.Genero" @input="getLibrosFiltrados" />
+            <v-text-field type="date" placeholder="Min Fecha" v-model="libroFiltrado.minFecha" @input="debounceFn" />
         </v-col>
         <v-col md="2">
-            <v-text-field type="number" placeholder="Min Páginas" v-model.number="libroFiltrado.minPaginas" @input="getLibrosFiltrados" />
-        </v-col>
-        <v-col md="2">
-            <v-text-field type="number" placeholder="Max Páginas" v-model.number="libroFiltrado.maxPaginas" @input="getLibrosFiltrados" />
-        </v-col>
-        <v-col md="2">
-            <v-text-field type="number" placeholder="Min Precio" v-model.number="libroFiltrado.minPrecio" @input="getLibrosFiltrados" />
-        </v-col>
-        <v-col md="2">
-            <v-text-field type="number" placeholder="Max Precio" v-model.number="libroFiltrado.maxPrecio" @input="getLibrosFiltrados" />
-        </v-col>
-        <v-col md="2">
-            <v-text-field type="date" placeholder="Min Fecha" v-model="libroFiltrado.minFecha" @input="getLibrosFiltrados" />
-        </v-col>
-        <v-col md="2">
-            <v-text-field type="date" placeholder="Max Fecha" v-model="libroFiltrado.maxFecha" @input="getLibrosFiltrados" />
+            <v-text-field type="date" placeholder="Max Fecha" v-model="libroFiltrado.maxFecha" @input="debounceFn" />
         </v-col>
         <v-col md="2">
             <v-btn text="Ordenar por precio" @click="() => librosReactivos= ordenarLibros()" />
