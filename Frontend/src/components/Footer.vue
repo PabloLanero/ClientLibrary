@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTheme } from 'vuetify'
-import { useConfigurationStore } from '@/stores/Central';
+import { useConfigurationStore } from '@/stores/configurationStore';
 import { ref } from 'vue';
 
 const { changeLanguaje } = useConfigurationStore()

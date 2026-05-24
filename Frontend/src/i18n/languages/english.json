@@ -5,7 +5,8 @@
             "btnLibros": "View Books",
             "btnSignin": "Sign Up",
             "btnLogin": "Log In",
-            "btnProfile": "View Profile"
+            "btnProfile": "View Profile",
+            "btnAdmin": "View Users"
         },
         "footer": {
             "language": "Translate"
@@ -56,6 +57,60 @@
             "pages": "Number of pages",
             "price": "Price",
             "avaliable": "Available",
-            "btnUpload": "Create Book"
+            "btnUpload": "Create Book",
+            "btnAddTitle": "Add Book",
+            "showMore": "Show more",
+            "admin":{
+                "delete": "Delete Book",
+                "update": "Update Book"
+            },
+            "filter":{
+                "isbn": "ISBN",
+                "title": "Title",
+                "genre": "Genre",
+                "minPages": "Min Pages",
+                "maxPages": "Max Pages",
+                "minPrice": "Min Price",
+                "maxPrice": "Max Price",
+                "orderByPrice": "Sort by price"
+            }
+        },
+        "admin":{
+            "charts":{
+                "bookPrices":{
+                    "title": "Book Prices",
+                    "byCategory": "By category",
+                    "byDate": "By date"
+                },
+                "loans":{
+                    "title": "Loans",
+                    "byYear": "By year",
+                    "byMonth": "By month",
+                    "byUser": "By user",
+                    "byBook": "By book"
+                },
+                "labels":{
+                    "prices": "Prices",
+                    "loans": "Loans"
+                }
+            }
+        },
+        "users":{
+            "update":{
+                "name": "Name",
+                "surname": "Surname",
+                "email": "Email",
+                "password": "Password",
+                "active": "Active",
+                "save": "Save"
+            },
+            "status":{
+                "active": "Active",
+                "inactive": "Inactive"
+            },
+            "action":{
+                "update": "Update",
+                "delete": "Delete"
+            }
         }
     }

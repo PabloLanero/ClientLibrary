@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // Imports
 import { ErrorMessage, Field, Form} from 'vee-validate'
-import { useValidation, useUserStore } from '@/stores/Central';
+import { useValidation } from '@/stores/validationStore';
+import { useUserStore } from '@/stores/userStore';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 // Type

@@ -22,16 +22,16 @@ const emit = defineEmits([
             <p class="user-date"><v-icon size="16">mdi-calendar</v-icon> {{ props.usuario.fechaRegistro }}</p>
             <div class="user-footer">
                 <v-chip :color="props.usuario.estaActivo ? 'success' : 'error'" size="small">
-                    {{ props.usuario.estaActivo ? 'Activo' : 'Inactivo' }}
+                    {{ props.usuario.estaActivo ? $t('users.status.active') : $t('users.status.inactive') }}
                 </v-chip>
             </div>
         </v-card-text>
         <v-card-actions class="user-actions">
             <v-btn color="primary" variant="text" @click="emit('updateUsuario', props.usuario)">
-                <v-icon>mdi-pencil</v-icon> Actualizar
+                <v-icon>mdi-pencil</v-icon> {{ $t('users.action.update') }}
             </v-btn>
             <v-btn color="error" variant="text" @click="emit('deleteUsuario', props.usuario)">
-                <v-icon>mdi-delete</v-icon> Borrar
+                <v-icon>mdi-delete</v-icon> {{ $t('users.action.delete') }}
             </v-btn>
         </v-card-actions>
     </v-card>

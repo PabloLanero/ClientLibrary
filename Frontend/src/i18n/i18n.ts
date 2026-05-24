@@ -1,5 +1,5 @@
 import { createI18n } from "vue-i18n";
-import {useConfigurationStore } from '@/stores/Central'
+import { useConfigurationStore } from '@/stores/configurationStore'
 import en from './languages/english.json'
 import es from './languages/spanish.json'
 // const { idioma } = useConfigurationStore()

@@ -34,7 +34,7 @@ function updateUsuario(usuario: Usuario){
     }).then(res => res.json())
     .then((res: boolean) => {
         if(res){
-            alert('Funcionar funciono')
+            
         }
     })
 }
@@ -78,14 +78,14 @@ onMounted( () => {
                 {{ usuarioSeleccionado?.nombre }}
             </v-card-title>
             <v-card-text>
-                <v-text-field label="Nombre" v-model:model-value="usuarioSeleccionado.nombre"></v-text-field>
-                <v-text-field label="Apellido" v-model:model-value="usuarioSeleccionado.apellido"></v-text-field>
-                <v-text-field label="Correo" v-model:model-value="usuarioSeleccionado.email"></v-text-field>
-                <v-text-field label="Contraseña" v-model:model-value="usuarioSeleccionado.password"></v-text-field>
-                <v-switch label="Activo" v-model:model-value="usuarioSeleccionado.estaActivo"></v-switch>
+                <v-text-field :label="$t('users.update.name')" v-model:model-value="usuarioSeleccionado.nombre"></v-text-field>
+                <v-text-field :label="$t('users.update.surname')" v-model:model-value="usuarioSeleccionado.apellido"></v-text-field>
+                <v-text-field :label="$t('users.update.email')" v-model:model-value="usuarioSeleccionado.email"></v-text-field>
+                <v-text-field :label="$t('users.update.password')" v-model:model-value="usuarioSeleccionado.password"></v-text-field>
+                <v-switch :label="$t('users.update.active')" v-model:model-value="usuarioSeleccionado.estaActivo"></v-switch>
             </v-card-text>
             <v-card-actions>
-                <v-btn @click="updateUsuario(usuarioSeleccionado)">Guardar</v-btn>
+                <v-btn @click="updateUsuario(usuarioSeleccionado)">{{ $t('users.update.save') }}</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>

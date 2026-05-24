@@ -57,6 +57,60 @@
             "pages": "Numero de paginas",
             "price": "Precio",
             "avaliable": "Diponible",
-            "btnUpload": "Crear Libro"
+            "btnUpload": "Crear Libro",
+            "btnAddTitle": "Añadir Libro",
+            "showMore": "Ver mas",
+            "admin":{
+                "delete": "Borrar Libro",
+                "update": "Actualizar Libro"
+            },
+            "filter":{
+                "isbn": "ISBN",
+                "title": "Nombre",
+                "genre": "Genero",
+                "minPages": "Min Páginas",
+                "maxPages": "Max Páginas",
+                "minPrice": "Min Precio",
+                "maxPrice": "Max Precio",
+                "orderByPrice": "Ordenar por precio"
+            }
+        },
+        "admin":{
+            "charts":{
+                "bookPrices":{
+                    "title": "Precio de los libros",
+                    "byCategory": "Por categoria",
+                    "byDate": "Por fecha"
+                },
+                "loans":{
+                    "title": "Prestamos",
+                    "byYear": "Por año",
+                    "byMonth": "Por mes",
+                    "byUser": "Por usuario",
+                    "byBook": "Por libro"
+                },
+                "labels":{
+                    "prices": "Precios",
+                    "loans": "Prestamos"
+                }
+            }
+        },
+        "users":{
+            "update":{
+                "name": "Nombre",
+                "surname": "Apellido",
+                "email": "Correo",
+                "password": "Contraseña",
+                "active": "Activo",
+                "save": "Guardar"
+            },
+            "status":{
+                "active": "Activo",
+                "inactive": "Inactivo"
+            },
+            "action":{
+                "update": "Actualizar",
+                "delete": "Borrar"
+            }
         }
     }

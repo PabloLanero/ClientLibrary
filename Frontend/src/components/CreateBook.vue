@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useValidation } from '@/stores/Central';
+import { useValidation } from '@/stores/validationStore';
 import type { Libro } from '@/models/Libros';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 
@@ -23,7 +23,7 @@ function submit(values: any){
 </script>
 <template>
 <v-card class="book-card">
-    <v-card-title class="book-title">Añadir Libro</v-card-title>
+    <v-card-title class="book-title">{{ $t('book.btnAddTitle') }}</v-card-title>
     <Form @submit="submit" class="book-form">
         <v-card-text class="book-form-content">
             <Field name="isbn" :placeholder="$t('book.isbn')" :rules="validateString" class="form-input" />

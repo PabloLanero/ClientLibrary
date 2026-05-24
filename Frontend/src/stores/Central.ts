@@ -11,6 +11,13 @@ import type { Login } from '@/models/DTOs/Login'
 import { mdiOrderNumericAscending } from '@mdi/js'
 import type { LibroFiltro } from '@/models/DTOs/BookFilter'
 
+
+/**
+ * Este archivo ya no se utiliza, se mantiene en caso de posibles errores que puedan surgir
+ * (O si openCode a decidido cambiar lo que sea en algun momento)
+ */
+
+
 export const useBookStore = defineStore('bookStore', () => {
   // No me deja modificarlo en las vistas
   const libros = ref<Libro[]>([])
@@ -67,6 +74,7 @@ export const useBookStore = defineStore('bookStore', () => {
   }
 
   function getLibros() {
+    
     fetch('http://localhost:8941/api/Libro')
       .then((res) => {
         if (!res.ok) throw new Error('Error en la petición')
